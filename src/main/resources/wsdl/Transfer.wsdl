@@ -1,0 +1,292 @@
+<?xml version='1.0' encoding='utf-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.webgate.bpc.ru/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ITransferService" targetNamespace="http://ws.webgate.bpc.ru/">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.webgate.bpc.ru/" elementFormDefault="unqualified" targetNamespace="http://ws.webgate.bpc.ru/" version="1.0">
+
+  <xs:element name="COMMAND" nillable="true" type="xs:anyType"></xs:element>
+
+  <xs:element name="a2ACreditDTO" type="tns:a2ACreditDTO"></xs:element>
+
+  <xs:element name="a2ACreditReplyDTO" type="tns:a2ACreditReplyDTO"></xs:element>
+
+  <xs:element name="a2AEnquiryDTO" type="tns:a2AEnquiryDTO"></xs:element>
+
+  <xs:element name="a2AEnquiryReplyDTO" type="tns:a2AEnquiryReplyDTO"></xs:element>
+
+  <xs:element name="a2AGetTransStatusDTO" type="tns:a2AGetTransStatusDTO"></xs:element>
+
+  <xs:element name="a2AGetTransStatusReplyDTO" type="tns:a2AGetTransStatusReplyDTO"></xs:element>
+
+  <xs:element name="a2AReplyDTO" type="tns:a2AReplyDTO"></xs:element>
+
+  <xs:element name="a2ARequestDTO" type="tns:a2ARequestDTO"></xs:element>
+
+  <xs:element name="a2aCredit" type="tns:a2aCredit"></xs:element>
+
+  <xs:element name="a2aCreditResponse" type="tns:a2aCreditResponse"></xs:element>
+
+  <xs:element name="a2aEnquiry" type="tns:a2aEnquiry"></xs:element>
+
+  <xs:element name="a2aEnquiryResponse" type="tns:a2aEnquiryResponse"></xs:element>
+
+  <xs:element name="a2aGetTransStatus" type="tns:a2aGetTransStatus"></xs:element>
+
+  <xs:element name="a2aGetTransStatusResponse" type="tns:a2aGetTransStatusResponse"></xs:element>
+
+  <xs:element name="accountDetailsDTO" type="tns:accountDetailsDTO"></xs:element>
+
+  <xs:element name="amountDTO" type="tns:amountDTO"></xs:element>
+
+  <xs:element name="credentials" type="tns:credentialsDTO"></xs:element>
+
+  <xs:element name="replyDTO" type="tns:replyDTO"></xs:element>
+
+  <xs:element name="terminalDetailsDTO" type="tns:terminalDetailsDTO"></xs:element>
+
+  <xs:complexType name="a2aCredit">
+    <xs:sequence>
+      <xs:element name="a2aCredit" type="tns:a2ACreditDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2ACreditDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:a2ARequestDTO">
+        <xs:sequence>
+          <xs:element name="amount" type="tns:amountDTO"></xs:element>
+          <xs:element minOccurs="0" name="origRefNum" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="a2ARequestDTO">
+    <xs:sequence>
+      <xs:element name="destAccount" type="tns:accountDetailsDTO"></xs:element>
+      <xs:element name="acqTerminalDetails" type="tns:terminalDetailsDTO"></xs:element>
+      <xs:element name="sourceBin" type="xs:string"></xs:element>
+      <xs:element name="refNum" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="message" type="xs:string"></xs:element>
+      <xs:element name="localTransactionDateTime" type="xs:dateTime"></xs:element>
+      <xs:element name="sttlDate" type="xs:dateTime"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="amountDTO">
+    <xs:sequence>
+      <xs:element name="amount" type="xs:string"></xs:element>
+      <xs:element name="currency" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="accountDetailsDTO">
+    <xs:sequence>
+      <xs:element name="instId" type="xs:string"></xs:element>
+      <xs:element name="accountNumber" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="currency" type="xs:int"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="terminalDetailsDTO">
+    <xs:sequence>
+      <xs:element name="terminalId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="terminalName" type="xs:string"></xs:element>
+      <xs:element name="merchantId" type="xs:string"></xs:element>
+      <xs:element name="mcc" type="xs:int"></xs:element>
+      <xs:element name="acqInstId" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="street" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="city" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="state" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="country" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="postalCode" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2aCreditResponse">
+    <xs:sequence>
+      <xs:element name="reply" type="tns:a2ACreditReplyDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2ACreditReplyDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:a2AReplyDTO">
+        <xs:sequence>
+          <xs:element name="refnum" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="a2AReplyDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:replyDTO">
+        <xs:sequence>
+          <xs:element name="localTransactionDateTime" type="xs:dateTime"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="replyDTO">
+    <xs:sequence>
+      <xs:element name="status" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="errorCode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="internalErrorCode" type="xs:string"></xs:element>
+      <xs:element minOccurs="0" name="errorDescription" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2aEnquiry">
+    <xs:sequence>
+      <xs:element name="a2aEnquiry" type="tns:a2AEnquiryDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2AEnquiryDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:a2ARequestDTO">
+        <xs:sequence></xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="a2aEnquiryResponse">
+    <xs:sequence>
+      <xs:element name="reply" type="tns:a2AEnquiryReplyDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2AEnquiryReplyDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:a2AReplyDTO">
+        <xs:sequence>
+          <xs:element name="refnum" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="beneficiaryName" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="a2aGetTransStatus">
+    <xs:sequence>
+      <xs:element name="a2aGetTransStatus" type="tns:a2AGetTransStatusDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2AGetTransStatusDTO">
+    <xs:sequence>
+      <xs:element name="transDate" type="xs:long"></xs:element>
+      <xs:element name="refNum" type="xs:string"></xs:element>
+      <xs:element name="instId" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2aGetTransStatusResponse">
+    <xs:sequence>
+      <xs:element name="reply" type="tns:a2AGetTransStatusReplyDTO"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="a2AGetTransStatusReplyDTO">
+    <xs:complexContent>
+      <xs:extension base="tns:replyDTO">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="respCode" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="respDesc" type="xs:string"></xs:element>
+          <xs:element minOccurs="0" name="reverted" type="xs:string"></xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+
+  <xs:complexType name="credentialsDTO">
+    <xs:sequence>
+      <xs:element name="user" type="xs:string"></xs:element>
+      <xs:element name="pass" type="xs:string"></xs:element>
+    </xs:sequence>
+  </xs:complexType>
+
+
+
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="a2aEnquiryResponse">
+    <wsdl:part element="tns:a2aEnquiryResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="a2aGetTransStatus">
+    <wsdl:part element="tns:a2aGetTransStatus" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="a2aCreditResponse">
+    <wsdl:part element="tns:a2aCreditResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="a2aGetTransStatusResponse">
+    <wsdl:part element="tns:a2aGetTransStatusResponse" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="a2aCredit">
+    <wsdl:part element="tns:a2aCredit" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="a2aEnquiry">
+    <wsdl:part element="tns:a2aEnquiry" name="parameters">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="ITransfer">
+    <wsdl:operation name="a2aCredit">
+      <wsdl:input message="tns:a2aCredit" name="a2aCredit">
+    </wsdl:input>
+      <wsdl:output message="tns:a2aCreditResponse" name="a2aCreditResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="a2aEnquiry">
+      <wsdl:input message="tns:a2aEnquiry" name="a2aEnquiry">
+    </wsdl:input>
+      <wsdl:output message="tns:a2aEnquiryResponse" name="a2aEnquiryResponse">
+    </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="a2aGetTransStatus">
+      <wsdl:input message="tns:a2aGetTransStatus" name="a2aGetTransStatus">
+    </wsdl:input>
+      <wsdl:output message="tns:a2aGetTransStatusResponse" name="a2aGetTransStatusResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ITransferServiceSoapBinding" type="tns:ITransfer">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"></soap:binding>
+    <wsdl:operation name="a2aCredit">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="a2aCredit">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="a2aCreditResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="a2aEnquiry">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="a2aEnquiry">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="a2aEnquiryResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="a2aGetTransStatus">
+      <soap:operation soapAction="" style="document"></soap:operation>
+      <wsdl:input name="a2aGetTransStatus">
+        <soap:body use="literal"></soap:body>
+      </wsdl:input>
+      <wsdl:output name="a2aGetTransStatusResponse">
+        <soap:body use="literal"></soap:body>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ITransferService">
+    <wsdl:port binding="tns:ITransferServiceSoapBinding" name="ITransferPort">
+      <soap:address location="http://172.17.200.10:9015/sahay/ws/ESTransfer"></soap:address>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
